@@ -1,0 +1,63 @@
+<!-- <img src="https://charlyflu.fr/images/charly-flu-3.jpg" alt="charly">
+<p>Mon premier composant !</p>
+<p>{{nom}}</p>
+<button (click)="onSubmit()" [disabled]="!valid">Envoyer</button>
+<br/>
+<input [(ngModel)]="nom"/> -->
+
+<main>
+    <img class="paolo-img hidden-img hidden" src="https://charlyflu.fr/images/charly-flu-3.jpg" alt="Paolo">
+    <img class="paolo-img-trigger hidden-img" src="https://charlyflu.fr/images/charly-flu-3.jpg" alt="Paolo" (mouseover)="onMouseEnter();" (mouseleave)="onMouseLeave();">
+    <form id="mainForm" >
+        <div class="form-item">
+            <label for="nom">Nom</label>
+            <input type="text" name="nom" [(ngModel)]="nom" id="nom" required>
+        </div>
+        <div class="form-item">
+            <label for="prenom">Prénom</label>
+            <input type="text" name="prenom" [(ngModel)]="prenom" id="prenom" required>
+        </div>
+        <div class="form-item">
+            <label for="adresse">Adresse</label>
+            <input type="text" name="adresse" [(ngModel)]="adresse" id="adresse" required>
+        </div>
+        <div class="form-item">
+            <label for="codePostal">Code Postal</label>
+            <input type="text" name="codePostal" [(ngModel)]="codePostal" id="codePostal" required>
+        </div>
+        <div class="form-item">
+            <label for="ville">Ville</label>
+            <input type="text" name="ville" [(ngModel)]="ville" id="ville" required>
+        </div>
+        <div class="form-item">
+            <label for="tel">Téléphone</label>
+            <input type="tel" name="tel" [(ngModel)]="tel" id="tel" required>
+        </div>
+        <div class="form-item">
+            <label for="email">Email</label>
+            <input type="email" name="email" [(ngModel)]="email" id="email" required>
+        </div>
+        <div class="form-item">
+            <label for="civilite">Civilité</label>
+            <select name="civilite" [(ngModel)]="civilite" id="civilite" required>
+                <option value="">Choisir</option>
+                <option value="Mme">Mme</option>
+                <option value="Mlle">Mlle</option>
+                <option value="M">M</option>
+            </select>
+        </div>
+        <div class="form-item">
+            <label for="password">Mot de passe</label>
+            <input type="password" name="password" [(ngModel)]="password" id="password" required>
+        </div>
+        <div class="form-item">
+            <label for="confirmPassword">Confirmer le mot de passe</label>
+            <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" id="confirmPassword" required>
+        </div>
+        <div class="form-item">
+            <label for="login">Login</label>
+            <input type="text" name="login" [(ngModel)]="login" id="login" required>
+        </div>
+        <button type="submit" (click)="onSubmit()" [disabled]="!valid">Envoyer</button>
+    </form>
+</main>
