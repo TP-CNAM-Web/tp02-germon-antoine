@@ -104,27 +104,6 @@ input.invalid {
     font-size: 0.9em;
 }
 
-button[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:disabled {
-    filter: grayscale(0.5) opacity(0.8) brightness(0.8);
-}
-
-.is-valid {
-    border: 1px solid green;
-}
-
-.is-invalid {
-    border: 1px solid red;
-}
-
 .hidden-img {
     width: 20vw;
     position: absolute;
@@ -138,11 +117,12 @@ button:disabled {
 
 .paolo-img:not(.hidden) {
     transform: translateX(calc(50vw - 50%)) translateY(calc(45vh - 50%)) rotate(0deg) scale(2);
+    z-index: 30;
 }
 
 .paolo-img {
     transition: transform 3s ease-in-out , opacity 1s;
-    z-index: 1;
+    z-index: 0;
 }
 
 .paolo-img-trigger {
