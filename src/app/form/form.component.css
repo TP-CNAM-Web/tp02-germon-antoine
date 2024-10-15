@@ -7,23 +7,54 @@ main {
     color: white;
     display: flex;
     flex-direction: column;
+    padding: 1rem;
+    margin: 2rem;
+    --r: 150;
+    --g: 70;
+    --b: 100;
+    --spacing: 3px;
+    box-shadow: rgba(var(--r), var(--g), var(--b), 0.4) var(--spacing) var(--spacing), rgba(var(--r), var(--g), var(--b), 0.3) calc(2 * var(--spacing)) calc(2 * var(--spacing)), rgba(var(--r), var(--g), var(--b), 0.2) calc(3 * var(--spacing)) calc(3 * var(--spacing)), rgba(var(--r), var(--g), var(--b), 0.1) calc(4 * var(--spacing)) calc(4 * var(--spacing)), rgba(var(--r), var(--g), var(--b), 0.05) calc(5 * var(--spacing)) calc(5 * var(--spacing));
+    transition: box-shadow 0.3s;
     gap: 1rem;
+}
+
+main:hover {
+    --r: 240;
+    --g: 46;
+    --b: 170;
+    --spacing: 6px;
 }
 
 form {
     background-color: #555555;
     display: flex;
     flex-direction: column;
-    width: 30vw;
+    width: 100%;
     padding: 1rem;
     gap: 2rem;
     border-radius: 10px;
+    box-sizing: border-box;
+    z-index: 20;
+}
+
+.form-line {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 2rem;
 }
 
 .form-item {
+    flex: 1;
     display: flex;
     flex-direction: column;
+    position: relative;
+    min-width: 0;
     gap: 0.5rem;
+}
+
+.form-item:has(input.invalid), .form-line:has(input.invalid) {
+    margin-bottom: -0.7rem;
 }
 
 .form-item > input, .form-item > select {
@@ -32,6 +63,45 @@ form {
 
 .form-item > label {
     font-family: Arial, sans-serif;
+}
+
+.recap-container {
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #121212
+}
+
+.recap-container h2 {
+    margin-top: 0;
+}
+
+.recap-container p {
+    margin: 0.5rem 0;
+}
+
+input, select {
+    border: 1px solid #000000;
+    line-height: 1.25rem;
+    border-radius: 5px;
+}
+
+.required::after {
+    content: " *";
+    color: red;
+}
+
+input.invalid {
+    background-color: #ffcccc; /* pastel red */
+}
+
+.error-message {
+    display: none;
+    color: #ff9696;
+    font-size: 0.9em;
 }
 
 button[type="submit"] {
@@ -79,4 +149,11 @@ button:disabled {
     transform: translateX(-40%);
     opacity: 0;
     z-index: 2;
+}
+
+/* phone */
+@media (max-width: 600px) {
+    .form-line {
+        flex-direction: column;
+    }
 }

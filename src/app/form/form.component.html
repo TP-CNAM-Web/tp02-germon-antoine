@@ -8,39 +8,52 @@
 <main>
     <img class="paolo-img hidden-img hidden" src="https://charlyflu.fr/images/charly-flu-3.jpg" alt="Paolo">
     <img class="paolo-img-trigger hidden-img" src="https://charlyflu.fr/images/charly-flu-3.jpg" alt="Paolo" (mouseover)="onMouseEnter();" (mouseleave)="onMouseLeave();">
-    <form id="mainForm" >
-        <div class="form-item">
-            <label for="nom">Nom</label>
-            <input type="text" name="nom" [(ngModel)]="nom" id="nom" required>
+    <form id="mainForm" (ngSubmit)="onSubmit($event)">
+        <div class="form-line">
+            <div class="form-item">
+                <label for="nom">Nom</label>
+                <input type="text" name="nom" [(ngModel)]="nom" id="nom" required placeholder="Nom">
+                <span class="error-message" id="error-nom">Le champ Nom est requis.</span>
+            </div>
+            <div class="form-item">
+                <label for="prenom">Prénom</label>
+                <input type="text" name="prenom" [(ngModel)]="prenom" id="prenom" required placeholder="Prénom">
+                <span class="error-message" id="error-prenom">Le champ Prénom est requis.</span>
+            </div>
         </div>
-        <div class="form-item">
-            <label for="prenom">Prénom</label>
-            <input type="text" name="prenom" [(ngModel)]="prenom" id="prenom" required>
+        <div class="form-line">
+            <div class="form-item">
+                <label for="adresse">Adresse</label>
+                <input type="text" name="adresse" [(ngModel)]="adresse" id="adresse" required placeholder="Adresse">
+                <span class="error-message" id="error-adresse">Le champ Adresse est requis.</span>
+            </div>
+            <div class="form-item">
+                <label for="codePostal">Code Postal</label>
+                <input type="text" name="codePostal" [(ngModel)]="codePostal" id="codePostal" required placeholder="Code Postal">
+                <span class="error-message" id="error-codePostal">Le champ Code Postal est requis.</span>
+            </div>
+            <div class="form-item">
+                <label for="ville">Ville</label>
+                <input type="text" name="ville" [(ngModel)]="ville" id="ville" required placeholder="Ville">
+                <span class="error-message" id="error-ville">Le champ Ville est requis.</span>
+            </div>
         </div>
-        <div class="form-item">
-            <label for="adresse">Adresse</label>
-            <input type="text" name="adresse" [(ngModel)]="adresse" id="adresse" required>
-        </div>
-        <div class="form-item">
-            <label for="codePostal">Code Postal</label>
-            <input type="text" name="codePostal" [(ngModel)]="codePostal" id="codePostal" required>
-        </div>
-        <div class="form-item">
-            <label for="ville">Ville</label>
-            <input type="text" name="ville" [(ngModel)]="ville" id="ville" required>
-        </div>
-        <div class="form-item">
-            <label for="tel">Téléphone</label>
-            <input type="tel" name="tel" [(ngModel)]="tel" id="tel" required>
-        </div>
-        <div class="form-item">
-            <label for="email">Email</label>
-            <input type="email" name="email" [(ngModel)]="email" id="email" required>
+        <div class="form-line">
+            <div class="form-item">
+                <label for="tel">Téléphone</label>
+                <input type="tel" name="tel" [(ngModel)]="tel" id="tel" required placeholder="Téléphone">
+                <span class="error-message" id="error-tel">Le champ Téléphone est requis.</span>
+            </div>
+            <div class="form-item">
+                <label for="email">Email</label>
+                <input type="email" name="email" [(ngModel)]="email" id="email" required placeholder="Email">
+                <span class="error-message" id="error-email">Le champ Email est requis.</span>
+            </div>
         </div>
         <div class="form-item">
             <label for="civilite">Civilité</label>
-            <select name="civilite" [(ngModel)]="civilite" id="civilite" required>
-                <option value="">Choisir</option>
+            <select name="civilite" [(ngModel)]="civilite" id="civilite">
+                <option value="" selected>Choisir</option>
                 <option value="Mme">Mme</option>
                 <option value="Mlle">Mlle</option>
                 <option value="M">M</option>
@@ -48,16 +61,32 @@
         </div>
         <div class="form-item">
             <label for="password">Mot de passe</label>
-            <input type="password" name="password" [(ngModel)]="password" id="password" required>
+            <input type="password" name="password" [(ngModel)]="password" id="password" required placeholder="Mot de passe">
+            <span class="error-message" id="error-password">Le champ Mot de passe est requis.</span>
         </div>
         <div class="form-item">
             <label for="confirmPassword">Confirmer le mot de passe</label>
-            <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" id="confirmPassword" required>
+            <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" id="confirmPassword" required placeholder="Confirmer le mot de passe">
+            <span class="error-message" id="error-confirmPassword">Le champ Confirmer le mot de passe est requis.</span>
         </div>
         <div class="form-item">
             <label for="login">Login</label>
-            <input type="text" name="login" [(ngModel)]="login" id="login" required>
+            <input type="text" name="login" [(ngModel)]="login" id="login" required placeholder="Login">
+            <span class="error-message" id="error-login">Le champ Login est requis.</span>
         </div>
-        <button type="submit" (click)="onSubmit()" [disabled]="!valid">Envoyer</button>
+        <button type="submit" [disabled]="!valid" *ngIf="!showRecap">Envoyer</button>
     </form>
+
+    <div class="recap-container" *ngIf="showRecap">
+        <h2>Récapitulatif</h2>
+        <p><strong>Nom:</strong> {{nom}}</p>
+        <p><strong>Prénom:</strong> {{prenom}}</p>
+        <p><strong>Adresse:</strong> {{adresse}}</p>
+        <p><strong>Code Postal:</strong> {{codePostal}}</p>
+        <p><strong>Ville:</strong> {{ville}}</p>
+        <p><strong>Téléphone:</strong> {{tel}}</p>
+        <p><strong>Email:</strong> {{email}}</p>
+        <p><strong>Civilité:</strong> {{civilite}}</p>
+        <p><strong>Login:</strong> {{login}}</p>
+    </div>
 </main>
